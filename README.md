@@ -12,8 +12,8 @@ Parses the language tag and returns an object with all available information.
 
 ## Installation
 ```sh
-yarn add --dev @wapps/langtag-utils
-# npm install --save-dev @wapps/langtag-utils
+yarn add @wapps/langtag-utils
+# npm install --save @wapps/langtag-utils
 ```
 
 ## Usage
