@@ -1,5 +1,5 @@
 # langtag-utils
-A collection of useful utilities for [bcp47](https://tools.ietf.org/html/bcp47) and [rfc4647](https://tools.ietf.org/html/rfc4647#section-3.4)
+> A collection of useful utilities for [bcp47](https://tools.ietf.org/html/bcp47) and [rfc4647](https://tools.ietf.org/html/rfc4647#section-3.4)
 
 ### `lookup(tags, ranges, defaultValue)`
 Find the most appropriate language tag that matches a language priority list.
@@ -10,7 +10,13 @@ Retrieves the language information saved in window.navigator backwards compatibl
 ### `parse(tag)`
 Parses the language tag and returns an object with all available information.
 
-## Example
+## Installation
+```sh
+yarn add --dev @wapps/langtag-utils
+# npm install --save-dev @wapps/langtag-utils
+```
+
+## Usage
 ```js
 import { lookup, navigatorLanguages, parse } from '@wapps/langtag-utils';
 
@@ -49,15 +55,6 @@ console.log(parse('en-Latn-GB-boont-r-extended-sequence-x-private'));
 
 ...
 
-```
-
-## Installation
-```bash
-$ npm install --save @wapps/langtag-utils
-```
-or
-```bash
-$ yarn add @wapps/langtag-utils
 ```
 
 ## License
