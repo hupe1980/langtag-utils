@@ -1,7 +1,7 @@
 {
   "name": "langtag-utils",
   "description": "A collection of useful utilities for bcp47 and rfc4647",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "hello@webappsolutions.de",
   "repository": "hupe1980/langtag-utils",
   "keywords": [

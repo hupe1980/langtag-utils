@@ -19,13 +19,13 @@ Parses the language tag and returns an object with all available information.
 ## Installation
 
 ```bash
-npm install --save @wapps/langtag-utils
+npm install --save langtag-utils
 ```
 
 ## How to use
 
 ```js
-import { lookup, navigatorLanguages, parse } from '@wapps/langtag-utils';
+import { lookup, navigatorLanguages, parse } from 'langtag-utils';
 
 const whiteList = ['de', 'en'];
 const fallbackLng = 'de';
