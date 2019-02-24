@@ -18,12 +18,11 @@ Parses the language tag and returns an object with all available information.
 
 ## Installation
 
-```sh
-yarn add @wapps/langtag-utils
-# npm install --save @wapps/langtag-utils
+```bash
+npm install --save @wapps/langtag-utils
 ```
 
-## Usage
+## How to use
 
 ```js
 import { lookup, navigatorLanguages, parse } from '@wapps/langtag-utils';
