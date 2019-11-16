@@ -9,7 +9,35 @@
   returned.
 */
 
-function lookup(tags, ranges, defaultValue = null) {
+function check(tag: string, range: string): boolean {
+  if (range === '*' || tag === range) {
+    return true;
+  }
+
+  let pos = range.lastIndexOf('-');
+
+  if (pos === -1) {
+    return false;
+  }
+
+  if (pos > 3 && range.charAt(pos - 2) === '-') {
+    pos -= 2;
+  }
+
+  range = range.substring(0, pos);
+
+  return check(tag, range);
+}
+
+function matcher(tags: string[], range: string): string | undefined {
+  return tags.find(tag => check(tag.toLowerCase(), range.toLowerCase()));
+}
+
+export function lookup(
+  tags?: string | string[],
+  ranges?: string | string[],
+  defaultValue = 'en'
+): string {
   if (!tags || !ranges) return defaultValue;
 
   tags = Array.isArray(tags) ? tags : [tags];
@@ -19,34 +47,12 @@ function lookup(tags, ranges, defaultValue = null) {
     // If the language range "*" is followed by other
     // language ranges, it is skipped.
     if (ranges[i] === '*') continue;
-    const match = tags.find(tag =>
-      check(tag.toLowerCase(), ranges[i].toLowerCase()),
-    );
+
+    const match = matcher(tags, ranges[i]);
+
     if (match) return match;
   }
   // If no language tag matches the
   // request, the "default" value is returned.
   return defaultValue;
 }
-
-function check(tag, range) {
-  while (true) {
-    if (range === '*' || tag === range) {
-      return true;
-    }
-
-    let pos = range.lastIndexOf('-');
-
-    if (pos === -1) {
-      return false;
-    }
-
-    if (pos > 3 && range.charAt(pos - 2) === '-') {
-      pos -= 2;
-    }
-
-    range = range.substring(0, pos);
-  }
-}
-
-export default lookup;

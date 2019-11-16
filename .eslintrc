@@ -1,12 +1,7 @@
 {
-  "parser": "babel-eslint",
   "extends": [
-    "plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ]
 }

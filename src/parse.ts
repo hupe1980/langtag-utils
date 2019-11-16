@@ -8,7 +8,33 @@
 */
 const re = /^(?:(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)|(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang))$|^((?:[a-z]{2,3}(?:(?:-[a-z]{3}){1,3})?)|[a-z]{4}|[a-z]{5,8})(?:-([a-z]{4}))?(?:-([a-z]{2}|\d{3}))?((?:-(?:[\da-z]{5,8}|\d[\da-z]{3}))*)?((?:-[\da-wy-z](?:-[\da-z]{2,8})+)*)?(-x(?:-[\da-z]{1,8})+)?$|^(x(?:-[\da-z]{1,8})+)$/i;
 
-function parse(tag) {
+function shift(array: string[]): string | null {
+  return array.shift() || null;
+}
+
+export interface Langtag {
+  langtag: {
+    language: {
+      language?: string | null;
+      extlang: string[];
+    };
+    script: string | null;
+    region: string | null;
+    variant: string[];
+    extension: {
+      singleton: string;
+      extension: string[];
+    }[];
+    privateuse: string[];
+  };
+  privateuse: string[];
+  grandfathered: {
+    irregular?: string | null;
+    regular?: string | null;
+  };
+}
+
+export function parse(tag?: string): Langtag | null {
   if (!tag) return null;
 
   const result = re.exec(tag);
@@ -18,7 +44,7 @@ function parse(tag) {
   // langtag language
   const langArray = result[3] ? result[3].split('-') : [];
   const language = {
-    language: langArray.length > 0 ? langArray.shift() : null,
+    language: langArray.length > 0 ? shift(langArray) : null,
     extlang: langArray,
   };
 
@@ -27,8 +53,8 @@ function parse(tag) {
   if (result[7]) {
     const tags = result[7].slice(1).split('-');
 
-    let singleton;
-    let ext = [];
+    let singleton = '';
+    let ext: string[] = [];
 
     tags.forEach(tag => {
       if (tag.length === 1) {
@@ -70,5 +96,3 @@ function parse(tag) {
     },
   };
 }
-
-export default parse;

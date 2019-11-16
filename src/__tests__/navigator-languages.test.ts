@@ -1,15 +1,20 @@
-import navigatorLanguages from '../navigatorLanguages';
+import { navigatorLanguages } from '../navigator-languages';
 
-const mockNavigator = obj => {
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      Object.defineProperty(navigator, key, {
-        value: obj[key],
-        configurable: true,
-      });
-    }
-  }
-};
+const mockNavigator = (obj: {
+        languages?: string[];
+        language?: string;
+        browserLanguage?: string;
+        userLanguage?: string;
+      }): void => {
+        for (const [key, value] of Object.entries(obj)) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            Object.defineProperty(navigator, key, {
+              value,
+              configurable: true
+            });
+          }
+        }
+      };
 
 describe('navigatorLanguages', () => {
   beforeEach(() => {
@@ -17,38 +22,38 @@ describe('navigatorLanguages', () => {
       languages: undefined,
       language: undefined,
       browserLanguage: undefined,
-      userLanguage: undefined,
+      userLanguage: undefined
     });
   });
 
-  it('should return null when language is undefined.', () => {
-    expect(navigatorLanguages()).toBe(null);
+  it('should return an empty array when language is undefined.', () => {
+    expect(navigatorLanguages()).toEqual([]);
   });
 
   it('should return all navigator.language values', () => {
     mockNavigator({
-      languages: ['de-DE', 'de', 'en'],
+      languages: ['de-DE', 'de', 'en']
     });
     expect(navigatorLanguages()).toEqual(['de-DE', 'de', 'en']);
   });
 
   it('should return navigator.language as array', () => {
     mockNavigator({
-      language: 'de-DE',
+      language: 'de-DE'
     });
     expect(navigatorLanguages()).toEqual(['de-DE']);
   });
 
   it('should return navigator.browserLanguage as array', () => {
     mockNavigator({
-      browserLanguage: 'de-DE',
+      browserLanguage: 'de-DE'
     });
     expect(navigatorLanguages()).toEqual(['de-DE']);
   });
 
   it('should return navigator.userLanguage as array', () => {
     mockNavigator({
-      userLanguage: 'de-DE',
+      userLanguage: 'de-DE'
     });
     expect(navigatorLanguages()).toEqual(['de-DE']);
   });
@@ -58,7 +63,7 @@ describe('navigatorLanguages', () => {
       languages: ['de-DE', 'de', 'en'],
       language: 'en',
       browserLanguage: 'fr',
-      userLanguage: 'de',
+      userLanguage: 'de'
     });
     expect(navigatorLanguages()).toEqual([
       'de-DE',
@@ -66,7 +71,7 @@ describe('navigatorLanguages', () => {
       'en',
       'en',
       'fr',
-      'de',
+      'de'
     ]);
   });
 });

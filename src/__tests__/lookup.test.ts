@@ -1,20 +1,20 @@
-import lookup from '../lookup';
+import { lookup } from '../lookup';
 
 describe('lookup', () => {
   beforeEach(() => {});
 
-  it('should return null when no parameter is passed', () => {
+  it('should return en when no parameter is passed', () => {
     const detected = lookup();
-    expect(detected).toBe(null);
+    expect(detected).toBe('en');
   });
 
   it('should return default when tags are null', () => {
-    const detected = lookup(null, ['de', 'en'], 'default');
+    const detected = lookup(undefined, ['de', 'en'], 'default');
     expect(detected).toEqual('default');
   });
 
   it('should return default when ranges are null', () => {
-    const detected = lookup(['de'], null, 'default');
+    const detected = lookup(['de'], undefined, 'default');
     expect(detected).toEqual('default');
   });
 
