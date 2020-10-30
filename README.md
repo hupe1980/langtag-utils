@@ -1,6 +1,5 @@
 # langtag-utils
-
-[![Build Status](https://travis-ci.org/hupe1980/langtag-utils.svg?branch=master)](https://travis-ci.org/hupe1980/langtag-utils)
+[![Build Status](https://github.com/hupe1980/langtag-utils/workflows/Build/badge.svg)](https://github.com/hupe1980/langtag-utils/workflows/Build/badge.svg)
 
 > A collection of useful utilities for [bcp47](https://tools.ietf.org/html/bcp47) and [rfc4647](https://tools.ietf.org/html/rfc4647#section-3.4)
 
