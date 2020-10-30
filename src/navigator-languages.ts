@@ -4,7 +4,7 @@ export type LegacyNavigator = Navigator & {
 };
 
 export function navigatorLanguages(): string[] {
-  if (typeof navigator === undefined) return [];
+  if (typeof navigator === "undefined") return [];
 
   let detected: string[] = [];
 
