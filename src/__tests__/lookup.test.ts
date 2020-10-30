@@ -1,8 +1,6 @@
 import { lookup } from '../lookup';
 
 describe('lookup', () => {
-  beforeEach(() => {});
-
   it('should return en when no parameter is passed', () => {
     const detected = lookup();
     expect(detected).toBe('en');
